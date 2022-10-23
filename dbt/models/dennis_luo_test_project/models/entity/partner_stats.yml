@@ -1,0 +1,55 @@
+version: 2
+
+models:
+- name: partner_stats
+  description: Partner level entity table containing all partners and their associated customer reference stats 
+  columns:
+  - name: partner_id
+    description: '{{ doc("partner_id") }}'
+    critical: true
+    tests: 
+    - not_null
+  - name: partner_type
+    description: '{{ doc("partner_type") }}'
+    tests: 
+    - not_null
+  - name: lead_sales_contact
+    description: '{{ doc("lead_sales_contact") }}'
+    tests: []
+  - name: sales_country
+    description: '{{ doc("sales_country") }}'
+    tests: 
+    - not_null
+    - accepted_values:
+        values:
+        - SINGAPORE
+        - HONGKONG
+        - UK
+        - NONE
+  - name: number_of_references
+    description: 'The total number of customer references the selected partner has made'
+    tests: 
+    - not_null
+  - name: number_of_pending
+    description: 'The total number of customer references that are pending for the selected partner'
+    tests: 
+    - not_null
+  - name: number_of_disinterested
+    description: 'The total number of customer references that are disinterested for the selected partner'
+    tests: 
+    - not_null
+  - name: number_of_signups
+    description: 'The total number of customers who have signupped successfully for the selected partner'
+    tests: 
+    - not_null
+  - name: latest_successful_referral
+    description: 'The most recent date and time the partner had a successful signup'
+    tests: []
+  - name: number_of_upsell
+    description: 'The total number of customer signups referred back to the selected partner'
+    tests: 
+    - not_null
+  - name: number_of_successful_referrals
+    description: 'The total number of successful referrals for the selected partner where a customer has signed up for a different company under that partner'
+    tests: 
+    - not_null

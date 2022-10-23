@@ -1,0 +1,37 @@
+version: 2
+
+models:
+- name: stg_sales_partner
+  description: This table combines the partner and salesmen base tables 
+  columns:
+  - name: id
+    description: '{{ doc("partner_id") }}'
+    critical: true
+    tests: 
+    - not_null
+  - name: created_at
+    description: '{{ doc("partner_created_at") }}'
+    tests: 
+    - not_null
+  - name: updated_at
+    description: '{{ doc("partner_updated_at") }}'
+    tests: 
+    - not_null
+  - name: partner_type
+    description: '{{ doc("partner_type") }}'
+    tests: 
+    - not_null
+  - name: lead_sales_contact
+    description: '{{ doc("lead_sales_contact") }}'
+    tests: []
+  - name: sales_country
+    description: '{{ doc("sales_country") }}'
+    tests: 
+    - not_null
+    - accepted_values:
+        values:
+        - NONE
+        - SINGAPORE
+        - HONGKONG
+        - UK
+

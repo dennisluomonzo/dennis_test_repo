@@ -1,0 +1,69 @@
+version: 2
+
+models:
+- name: stg_referral_sales_partner
+  description: Combines base_referrals and stg_sales_partner to give customer reference data with their associated partner and salesmen data 
+  columns:
+  - name: id
+    description: '{{ doc("referral_id") }}'
+    critical: true
+    tests: 
+    - not_null
+  - name: created_at
+    description: '{{ doc("referral_created_at") }}'
+    tests: 
+    - not_null
+  - name: updated_at
+    description: '{{ doc("referral_updated_at") }}'
+    tests: 
+    - not_null
+  - name: company_id
+    description: '{{ doc("company_id") }}'
+    tests: 
+    - not_null
+  - name: partner_id
+    description: '{{ doc("partner_id") }}'
+    tests: 
+    - not_null
+  - name: consultant_id
+    description: '{{ doc("consultant_id") }}'
+    tests: 
+    - not_null
+  - name: status
+    description: '{{ doc("status") }}'
+    tests: 
+    - not_null
+    - accepted_values:
+        values:
+        - pending
+        - successful
+        - disinterested
+  - name: is_outbound
+    description: '{{ doc("is_outbound") }}'
+    tests: 
+    - not_null
+  - name: referral_month
+    description: '{{ doc("referral_month") }}'
+    tests: 
+    - not_null
+  - name: referral_year
+    description: '{{ doc("referral_year") }}'
+    tests: 
+    - not_null
+  - name: partner_type
+    description: '{{ doc("partner_type") }}'
+    tests: 
+    - not_null
+  - name: lead_sales_contact
+    description: '{{ doc("lead_sales_contact") }}'
+    tests: []
+  - name: sales_country
+    description: '{{ doc("sales_country") }}'
+    tests: 
+    - not_null
+    - accepted_values:
+        values:
+        - NONE
+        - SINGAPORE
+        - HONGKONG
+        - UK

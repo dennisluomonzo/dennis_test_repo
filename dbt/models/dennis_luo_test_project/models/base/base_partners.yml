@@ -1,0 +1,42 @@
+version: 2
+
+sources:
+  - name: test
+    database: dennis-luo-test-project
+    freshness: # default freshness
+      warn_after: {count: 12, period: hour}
+      error_after: {count: 24, period: hour}
+    loaded_at_field: _etl_loaded_at
+
+
+    tables:
+      - name: partners 
+        freshness: # make this a little more strict
+          warn_after: {count: 6, period: hour}
+          error_after: {count: 12, period: hour}
+
+models:
+- name: base_partners
+  description: This table contains the partner info from the partner input stream
+  columns:
+  - name: id
+    description: '{{ doc("partner_id") }}'
+    critical: true
+    tests: 
+    - not_null
+  - name: created_at
+    description: '{{ doc("partner_created_at") }}'
+    tests: 
+    - not_null
+  - name: updated_at
+    description: '{{ doc("partner_updated_at") }}'
+    tests: 
+    - not_null
+  - name: partner_type
+    description: '{{ doc("partner_type") }}'
+    tests: 
+    - not_null
+  - name: lead_sales_contact
+    description: '{{ doc("lead_sales_contact") }}'
+    tests: []
+
